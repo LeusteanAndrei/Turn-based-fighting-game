@@ -1,7 +1,6 @@
 package Classes;
 
 import Classes.GameFunctionality.GameState;
-import Utilities.Pair;
 import Utilities.Triplet;
 
 import java.util.ArrayList;
@@ -16,12 +15,12 @@ public class Character {
     public int charge;
 
     List<Triplet> status;
-    List<Pair> attacks;
+    List<Attack> attacks;
 
     public Character() {
     }
 
-    public Character(String name, int level, Stats initial_stats, Stats current_stats, int charge, List<Triplet> status, List<Pair> attacks)
+    public Character(String name, int level, Stats initial_stats, Stats current_stats, int charge, List<Triplet> status, List<Attack> attacks)
     {
         this.name = name;
         this.level = level;
@@ -33,8 +32,8 @@ public class Character {
             this.status.add(new Triplet(e));
         }
         this.attacks = new ArrayList<>();
-        for (Pair p : attacks) {
-            this.attacks.add(new Pair(p));
+        for (Attack p : attacks) {
+            this.attacks.add(new Attack(p));
         }
 
     }
@@ -50,9 +49,33 @@ public class Character {
             this.status.add(new Triplet(e));
         }
         this.attacks = new ArrayList<>();
-        for (Pair p : character.attacks) {
-            this.attacks.add(new Pair(p));
+        for (Attack p : character.attacks) {
+            this.attacks.add(new Attack(p));
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getCharge() {
+        return charge;
+    }
+
+    public void setCharge(int charge) {
+        this.charge = charge;
     }
 
     public List<Triplet> getStatus() {
@@ -71,18 +94,18 @@ public class Character {
     }
 
 
-    public void setAttacks(List<Pair> attacks) {
+    public void setAttacks(List<Attack> attacks) {
         this.attacks = new ArrayList<>();
-        for (Pair p : attacks) {
-            this.attacks.add(new Pair(p));
+        for (Attack p : attacks) {
+            this.attacks.add(new Attack(p));
         }
     }
 
-    public List<Pair> getAttacks()
+    public List<Attack> getAttacks()
     {
-        List<Pair> attacks = new ArrayList<>();
-        for (Pair p : this.attacks) {
-            attacks.add(new Pair(p));
+        List<Attack> attacks = new ArrayList<>();
+        for (Attack p : this.attacks) {
+            attacks.add(new Attack(p));
         }
         return attacks;
     }
@@ -101,6 +124,25 @@ public class Character {
     }
 
 
+    @Override
+    public String toString() {
 
 
+        String s = "Character: " + name + ", level: " + level +
+                "\n    initial_stats: " + initial_stats +
+                "\n    current_stats: " + current_stats +
+                "\n    charge: " + charge + "\n";
+
+        StringBuilder status = new StringBuilder("    status: ");
+        for (Triplet e : this.status) {
+            status.append(e.toString()).append(" ");
+        }
+        s += status.toString() + "\n";
+        StringBuilder attacks = new StringBuilder("    attacks: ");
+        for (Attack p : this.attacks) {
+            attacks.append(p.toString()).append(" ");
+        }
+        s += attacks.toString() + "\n";
+        return s;
+    }
 }

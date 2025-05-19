@@ -27,7 +27,10 @@ public class Skill {
         for (Triplet effect : skill.effects) {
             this.effects.add(new Triplet(effect));
         }
-        this.damageFunction = new Triplet(skill.damageFunction);
+        if (skill.damageFunction != null)
+            this.damageFunction = new Triplet(skill.damageFunction);
+        else
+            this.damageFunction = null;
     }
 
 
@@ -71,6 +74,7 @@ public class Skill {
         }
         return effects;
     }
+
 
     public void setEffects(List<Triplet> effects) {
         this.effects = new ArrayList<>();

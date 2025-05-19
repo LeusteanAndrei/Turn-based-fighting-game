@@ -13,6 +13,7 @@ public class Stats{
         this.gain = stats.gain;
     }
 
+    public  Stats(){}
 
     public int getAttack() {
         return attack;
@@ -60,5 +61,17 @@ public class Stats{
 
     public void setGain(float gain) {
         this.gain = gain;
+    }
+
+    @Override
+    public String toString() {
+        return "Stats{" +
+                "attack=" + attack +
+                ", health=" + health +
+                ", damageRes=" + damageRes +
+                ", critRate=" + critRate +
+                ", critDamage=" + critDamage +
+                ", gain=" + gain +
+                '}';
     }
 }

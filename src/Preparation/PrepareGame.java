@@ -46,15 +46,25 @@ public class PrepareGame {
         effectFunctions.put("party_attack_up", SkillEffects::partyAttackUp);
         effectFunctions.put("remove_party_attack_up", SkillEffects::removePartyAttackUp);
         effectFunctions.put("self_charge", SkillEffects::selfCharge);
+        effectFunctions.put("curse_all_enemies", SkillEffects::curseAllEnemies);
+        effectFunctions.put("curse_selected_enemy", SkillEffects::curseSelectedEnemy);
+        effectFunctions.put("gain_charge_each_turn", SkillEffects::gainChargeEachTurn);
     }
 
     private static void prepareEffects()
     {
-        effects.put("attack_up", new Effect("attack_up", "self_attack_up", "remove_self_attack_up",
+        effects.put("party_attack_up", new Effect("party_attack_up", "party_attack_up", "remove_party_attack_up",
                 GamePeriod.START_OF_TURN, EffectType.ONCE));
-
-
-
+        effects.put("self_charge", new Effect("self_charge", "self_charge", "",
+                GamePeriod.START_OF_TURN, EffectType.ONCE));
+        effects.put("self_attack_up", new Effect("self_attack_up", "self_attack_up", "remove_self_attack_up",
+                GamePeriod.START_OF_TURN, EffectType.ONCE));
+        effects.put("curse_all_enemies", new Effect("curse_all_enemies", "curse_all_enemies", "",
+                GamePeriod.START_OF_TURN, EffectType.ONCE));
+        effects.put("curse_selected_enemy", new Effect("curse_selected_enemy", "curse_selected_enemy", "",
+                GamePeriod.START_OF_TURN, EffectType.ONCE));
+        effects.put("gain_charge_each_turn", new Effect("gain_charge_each_turn", "gain_charge_each_turn", "",
+                GamePeriod.START_OF_TURN, EffectType.EVERY_TURN));
 
     }
 
@@ -108,5 +118,7 @@ public class PrepareGame {
     {
         return new Effect( effects.get(effectName) ) ;
     }
+
+
 
 }

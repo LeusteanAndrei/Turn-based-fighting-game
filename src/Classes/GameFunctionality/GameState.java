@@ -178,7 +178,7 @@ public class GameState {
         return opposingCharacters;
     }
 
-    private void applySkill(Skill skill)
+    public void applySkill(Skill skill)
     {
 
         for(Triplet triplet : skill.getEffects()) {
@@ -279,5 +279,15 @@ public class GameState {
     }
 
 
+    public void setSelectedCharacterIndex(int index)
+    {
+        this.selectedCharacterIndex = index;
+    }
+
+
+    public int getSelectedCharacterIndex()
+    {
+        return this.selectedCharacterIndex;
+    }
 
 }
