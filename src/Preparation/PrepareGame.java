@@ -37,6 +37,7 @@ public class PrepareGame {
     {
         prepareEffectFunctions();
         prepareEffects();
+        setEnemies();
     }
 
     private static void prepareEffectFunctions()
@@ -49,6 +50,9 @@ public class PrepareGame {
         effectFunctions.put("curse_all_enemies", SkillEffects::curseAllEnemies);
         effectFunctions.put("curse_selected_enemy", SkillEffects::curseSelectedEnemy);
         effectFunctions.put("gain_charge_each_turn", SkillEffects::gainChargeEachTurn);
+        effectFunctions.put("party_charge", SkillEffects::partyCharge);
+        effectFunctions.put("party_ultimate_strength", SkillEffects::partyUltimateStrength);
+
     }
 
     private static void prepareEffects()
@@ -65,6 +69,10 @@ public class PrepareGame {
                 GamePeriod.START_OF_TURN, EffectType.ONCE));
         effects.put("gain_charge_each_turn", new Effect("gain_charge_each_turn", "gain_charge_each_turn", "",
                 GamePeriod.START_OF_TURN, EffectType.EVERY_TURN));
+        effects.put("party_charge", new Effect("party_charge", "party_charge", "",
+                GamePeriod.START_OF_TURN, EffectType.ONCE));
+        effects.put("party_ultimate_strength", new Effect("party_ultimate_strength", "party_ultimate_strength", "",
+                GamePeriod.START_OF_TURN, EffectType.ONCE));
 
     }
 
@@ -120,5 +128,41 @@ public class PrepareGame {
     }
 
 
+    public static void printEnemies()
+    {
+        for (Map.Entry<String, NonPlayable> entry : enemies.entrySet()) {
+            String key = entry.getKey();
+            NonPlayable value = entry.getValue();
+            System.out.println("Enemy Name: " + key);
+            System.out.println("Enemy Stats: " + value.getCurrent_stats().toString());
+        }
+    }
 
+
+
+    public static void setEnemies()
+    {
+
+        NonPlayable enemy = new NonPlayable();
+        Stats stats = new Stats();
+        stats.setAttack(100);
+        stats.setHealth(1000);
+        stats.setCritRate(0.3f);
+        stats.setDamageRes(0.2f);
+        stats.setCritDamage(1.5f);
+        stats.setGain(0.1f);
+
+        enemy.setName("Lahmu");
+        enemy.setInitial_stats(stats);
+        enemy.setCurrent_stats(stats);
+
+        enemies.put("Lahmu", new NonPlayable(enemy));
+
+
+        enemy.setName("Human");
+        enemies.put("Human", new NonPlayable(enemy));
+
+        enemy.setName("GUDAGUDA");
+        enemies.put("GUDAGUDA", new NonPlayable(enemy));
+    }
 }

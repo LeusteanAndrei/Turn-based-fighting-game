@@ -19,7 +19,13 @@ public class Relic {
 
 
 
-    public Relic(){}
+    public Relic(){
+        this.name = "";
+        this.description = "";
+        this.level = 0;
+        this.buffs = new HashMap<>();
+        this.effects = new ArrayList<>();
+    }
     public Relic(Relic relic)
     {
         this.name = relic.name;

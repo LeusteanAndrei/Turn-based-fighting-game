@@ -19,6 +19,8 @@ public class User {
 
     public Relic getRelic(Integer integer)
     {
+        if (relics.get(integer) == null)
+            return null;
         return new Relic(relics.get(integer));
     }
 

@@ -5,6 +5,7 @@ import Classes.Character;
 import Enumerations.EffectType;
 import Enumerations.GamePeriod;
 import Preparation.PrepareGame;
+import Utilities.Reader;
 import Utilities.Triplet;
 
 import java.util.ArrayList;
@@ -16,6 +17,9 @@ public class GameState {
      User user = User.getInstance();
      List<Classes.Character> activeCharacters;
      List<Classes.Character> opposingCharacters;
+
+     List<Character> playerCharacters;
+     List<Character> enemyCharacters;
 
      List<Integer> hasHitCount;
      List<Integer> beenHitCount;
@@ -73,8 +77,59 @@ public class GameState {
 
     public void playerTurn()
     {
+        while(true) {
+            Printer.choiceFight();
+            int choice = Printer.getChoice(1, 4);
+            switch (choice) {
+                case 1: {
+                    this.selectCharacter();
+                    break;
+                }
+                case 2: {
+                    this.selectEnemy();
+                    break;
+                }
+                case 3: {
+                    this.selectSkill();
+                    break;
+                }
+                case 4: {
+                    this.player_attack();
+                    break;
+                }
+            }
+            this.reloadScreen(0);
+        }
+    }
+
+    public void selectCharacter(){
+        this.reloadScreen(0);
+        int right = this.activeCharacters.size();
+        StringBuilder list = new StringBuilder();
+        for (Character character : this.activeCharacters) {
+            list.append(character.getName()).append(", ");
+        }
+        Printer.choiceMenu(1, right, list.toString());
+        int choice = Printer.getChoice(1, right);
+        this.selectedCharacterIndex = choice - 1;
+
+
 
     }
+    public void selectEnemy(){
+        this.reloadScreen(0);
+        int right = this.opposingCharacters.size();
+        StringBuilder list = new StringBuilder();
+        for (Character character : this.opposingCharacters) {
+            list.append(character.getName()).append(", ");
+        }
+        Printer.choiceMenu(1, right, list.toString());
+        int choice = Printer.getChoice(1, right);
+        this.selectedOpposingCharacterIndex = choice - 1;
+
+    }
+    public static void selectSkill(){}
+    public static void player_attack(){}
 
     public void enemyTurn()
     {
@@ -85,6 +140,8 @@ public class GameState {
     {
 
         this.setOpposingCharacters( battle.getEnemies() );
+
+        Printer.printStartFightScreen(this);
 
         applyEffects(GamePeriod.START_OF_BATTLE);
         swap();
@@ -121,8 +178,6 @@ public class GameState {
 
     }
 
-
-
     public List<Classes.Character> getActiveCharacters()
     {
         List<Classes.Character> activeCharacters = new ArrayList<>();
@@ -147,12 +202,14 @@ public class GameState {
     public void setActiveCharacters(List< ? extends Classes.Character> currentCharacters)
     {
         this.activeCharacters = new ArrayList<>();
+
         for ( Classes.Character character : currentCharacters) {
             if (character instanceof Playable)
                 this.activeCharacters.add(new Playable((Playable) character));
             else if (character instanceof NonPlayable)
                 this.activeCharacters.add(new NonPlayable((NonPlayable) character));
         }
+        this.playerCharacters = this.activeCharacters;
     }
 
     public void setOpposingCharacters(List< ? extends Classes.Character> opposingCharacters)
@@ -164,6 +221,7 @@ public class GameState {
             else if (character instanceof NonPlayable)
                 this.opposingCharacters.add(new NonPlayable((NonPlayable) character));
         }
+        this.enemyCharacters = this.opposingCharacters;
     }
 
     public List<Classes.Character> getOpposingCharacters()
@@ -249,9 +307,19 @@ public class GameState {
                 if(effect.getPeriod() == Period && effect.getType() != EffectType.ONCE)
                 {
                     effect.applyEffect(this, triplet.getScale());
+
+                    reloadScreen(500);
                 }
            }
         }
+    }
+
+    public void reloadScreen( int time)
+    {
+
+        Printer.clearTerminal();
+        Printer.printStartFightScreen(this);
+        Printer.sleep(time);
     }
 
     private void removeEffects()
@@ -278,16 +346,47 @@ public class GameState {
         }
     }
 
-
     public void setSelectedCharacterIndex(int index)
     {
         this.selectedCharacterIndex = index;
     }
 
-
     public int getSelectedCharacterIndex()
     {
         return this.selectedCharacterIndex;
+    }
+
+    public void setSelectedOpposingCharacterIndex(int index)
+    {
+        this.selectedOpposingCharacterIndex = index;
+    }
+    public int getSelectedOpposingCharacterIndex()
+    {
+        return this.selectedOpposingCharacterIndex;
+    }
+
+
+    public List<Character> getPlayerCharacters()
+    {
+        List<Character> playerCharacters = new ArrayList<>();
+        for (Character character : this.playerCharacters) {
+            if (character instanceof Playable)
+                playerCharacters.add(new Playable((Playable) character));
+            else if (character instanceof NonPlayable)
+                playerCharacters.add(new NonPlayable((NonPlayable) character));
+        }
+        return  playerCharacters;
+    }
+    public List<Character> getEnemyCharacters()
+    {
+        List<Character> enemyCharacters = new ArrayList<>();
+        for (Character character : this.enemyCharacters) {
+            if (character instanceof Playable)
+                enemyCharacters.add(new Playable((Playable) character));
+            else if (character instanceof NonPlayable)
+                enemyCharacters.add(new NonPlayable((NonPlayable) character));
+        }
+        return enemyCharacters;
     }
 
 }

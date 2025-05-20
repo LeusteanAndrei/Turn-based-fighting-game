@@ -1,8 +1,8 @@
 package Classes;
 
 public class Stats{
-    private int attack,  health;
-    private float damageRes, critRate,  critDamage,  gain;
+    private int attack = 0,  health = 0;
+    private float damageRes = 0, critRate = 0,  critDamage = 0,  gain = 0;
 
     public Stats(Stats stats) {
         this.attack = stats.attack;

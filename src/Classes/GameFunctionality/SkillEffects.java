@@ -39,10 +39,24 @@ public final class SkillEffects {
         state.activeCharacters.get(index).setCharge(charge + (int) scale);
     }
 
+    public static void partyCharge(GameState state, float scale) {
+        int index = state.selectedCharacterIndex;
+        for (int i = 0; i < state.activeCharacters.size(); i++) {
+            state.selectedCharacterIndex = i;
+            selfCharge(state, scale);
+        }
+        state.selectedCharacterIndex = index;
+    }
+
+    public static void partyUltimateStrength(GameState state, float scale) {}
+
     public static void curseAllEnemies(GameState state, float scale) {}
 
     public static void curseSelectedEnemy(GameState state, float scale) {}
 
     public static void gainChargeEachTurn(GameState state, float scale) {}
+
+
+
 
 }

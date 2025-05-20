@@ -1,8 +1,8 @@
-import Classes.Effect;
+import Classes.*;
+import Classes.Character;
 import Classes.GameFunctionality.GameState;
-import Classes.Playable;
-import Classes.Relic;
-import Classes.Skill;
+import Classes.GameFunctionality.Printer;
+import Enumerations.CharacterType;
 import Preparation.PrepareGame;
 import Preparation.Setup;
 import Utilities.Reader;
@@ -13,6 +13,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+
+
+class A
+{
+    public int test;
+
+    public A(int test)
+    {
+        this.test = test;
+    }
+}
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -24,7 +35,6 @@ public class Main {
         Map<String, Playable> characters = setup.getCharacters();
         List<Playable> playables = new ArrayList<>();
         for (Playable playable : characters.values()) {
-            System.out.println(playable);
             playables.add(playable);
         }
 
@@ -40,17 +50,48 @@ public class Main {
         buffs.put("attack", 200);
         relic.setBuffs(buffs);
         relic.applyBuffs(playables.get(0));
-        System.out.println(playables.get(0));
+//        System.out.println(playables.get(0));
+
+        List<String> ls = new    ArrayList<>();
+        ls.add("Lahmu");
+        ls.add("GUDAGUDA");
+
+
 
 
         GameState state = GameState.getInstance();
         state.setActiveCharacters(playables);
         state.setSelectedCharacterIndex(0);
-        Skill skill = playables.get(0).getSkills().get(0);
-        state.applySkill(skill);
-        System.out.println(skill.getName());
-        System.out.println(state.getActiveCharacters().get(0));
+        state.setOpposingCharacters(setup.getGame().getEnemiesByName(ls));
 
+
+//        for (Character character : state.getOpposingCharacters()) {
+//            System.out.println(character);
+//        }
+
+
+        Battle battle = new Battle();
+        battle.setEnemies(ls);
+        List<Battle> battles = new ArrayList<>();
+        battles.add(battle);
+        state.setBattles(battles);
+        state.startFight();
+
+
+
+
+//
+//        Skill skill = playables.get(0).getSkills().get(0);
+//        state.applySkill(skill);
+//
+//
+//
+//
+//        Printer.clearTerminal();
+//
+//        Printer.printStartFightScreen(state);
+//        Printer.choiceMenu(1, 4,
+//                "Select a character, Select an enemy, Use a skill, Attack");
 
 
     }

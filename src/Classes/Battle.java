@@ -8,9 +8,14 @@ import java.util.Map;
 
 public class Battle {
 
-    private Stage stage;
+    private Stage stage ;
     private List<String> enemies;
 
+
+    public Battle() {
+        this.stage = new Stage();
+        this.enemies = new ArrayList<>();
+    }
 
     public Battle(Battle battle)
     {
@@ -30,6 +35,14 @@ public class Battle {
     public Stage getStage()
     {
         return new Stage(this.stage);
+    }
+
+
+    public void setEnemies(List<String> enemies)
+    {
+        this.enemies = new ArrayList<>();
+        for (String enemy : enemies)
+            this.enemies.add(enemy);
     }
 
 }

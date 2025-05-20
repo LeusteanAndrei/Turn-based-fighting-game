@@ -61,6 +61,18 @@ public class Setup {
         skills.put(skill.getName(), new Skill(skill));
 
 
+        effects = new ArrayList<>();
+        skill = new Skill();
+        skill.setName("Curtain of the Night EX");
+        skill.setDescription("Increase the ultimate strength and charge of all allies by 20%");
+        skill.setCooldown(5);
+        effects.add(new Triplet(3, (float)0.2, "party_charge"));
+        effects.add(new Triplet(3, (float)0.2, "party_ultimate_strength"));
+        skill.setEffects(effects);
+
+        skills.put(skill.getName(), new Skill(skill));
+
+
     }
 
     private void setupCharacters()
@@ -87,12 +99,34 @@ public class Setup {
 
         skills.add(new Skill(this.skills.get("Charisma A+")));
         skills.add(new Skill(this.skills.get("Treasury of Babylon EX")));
-        skills.add(new Skill(this.skills.get("Charisma of Jade A+")));
         playable.setSkills(skills);
-        playable.setExp(0);
 
 
         characters.put(playable.getName(), new Playable(playable));
+
+        stats = new Stats();
+        playable = new Playable();
+        skills = new ArrayList<>();
+
+        playable.setName("Oberon");
+        playable.setLevel(1);
+
+        stats.setAttack(1825);
+        stats.setHealth(2194);
+        stats.setDamageRes((float)0.15);
+        stats.setCritRate((float)0.30);
+        stats.setCritDamage((float)1.4);
+        stats.setGain((float)0.34);
+
+        playable.setInitial_stats(stats);
+        playable.setCurrent_stats(stats);
+        skills.add(new Skill(this.skills.get("Charisma of Jade A+")));
+        skills.add(new Skill(this.skills.get("Curtain of the Night EX")));
+        playable.setSkills(skills);
+
+        characters.put(playable.getName(), new Playable(playable));
+
+
 
     }
 
