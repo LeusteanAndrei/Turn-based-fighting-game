@@ -11,7 +11,7 @@ public class Relic {
 
 
     private String name;
-    private String decription;
+    private String description;
     private int level;
 
     Map<String, Number> buffs;
@@ -23,7 +23,7 @@ public class Relic {
     public Relic(Relic relic)
     {
         this.name = relic.name;
-        this.decription = relic.decription;
+        this.description = relic.description;
         this.level = relic.level;
 
         this.buffs = new HashMap<>();
@@ -35,6 +35,45 @@ public class Relic {
         for (Triplet e : relic.effects) {
             this.effects.add(new Triplet(e));
         }
+    }
+
+    public void setBuffs(Map<String, Number> buffs) {
+        this.buffs = new HashMap<>();
+        for (Map.Entry<String, Number> entry : buffs.entrySet()) {
+            this.buffs.put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    public Map<String, Number> getBuffs() {
+        Map<String, Number> buffs = new HashMap<>();
+        for (Map.Entry<String, Number> entry : this.buffs.entrySet()) {
+            buffs.put(entry.getKey(), entry.getValue());
+        }
+        return buffs;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String decription) {
+        this.description = decription;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public List<Triplet> getEffects()
@@ -84,6 +123,8 @@ public class Relic {
                 }
             }
         }
+        character.setInitial_stats(stats);
+        character.setCurrent_stats(stats);
     }
 
 }
