@@ -2909,3 +2909,27 @@ Read all skills for character with id 24, 1748119808419
 Read all playables from database, 1748119808419
 Removed unused stats from the database., 1748120027777
 Cleaned up health table, 1748120027783
+Read all attacks for character with id 4, 1748380440143
+Read character with id 4, 1748380440144
+Read skill with id: 3, 1748380440196
+Read skill with id: 4, 1748380440199
+Read all skills for character with id 4, 1748380440199
+Read all attacks for character with id 5, 1748380440201
+Read character with id 5, 1748380440201
+Read skill with id: 1, 1748380440204
+Read skill with id: 2, 1748380440206
+Read skill with id: 5, 1748380440208
+Read all skills for character with id 5, 1748380440208
+Read all attacks for character with id 24, 1748380440210
+Read character with id 24, 1748380440210
+Read skill with id: 6, 1748380440212
+Read skill with id: 7, 1748380440213
+Read all skills for character with id 24, 1748380440214
+Read all playables from database, 1748380440214
+Read playable character with id 24, 1748380440214
+Read all users from the database , 1748380440216
+Deleted user with id: 3, 1748380441718
+Read all users from the database , 1748380451503
+Deleted user with id: 4, 1748380452596
+Removed unused stats from the database, 1748380457570
+Cleaned up health table, 1748380457586

@@ -8,7 +8,7 @@ import java.time.Instant;
 
 public class Csv {
 
-    private static Path filepath = Path.of("C:\\Users\\andre\\Desktop\\FMI\\AN 2\\SEM II\\Java\\Proiect\\src\\Classes\\csv_reports\\csv_report.csv");
+    private static Path filepath = Path.of("C:\\Users\\andre\\Desktop\\FMI\\AN 2\\SEM II\\Java\\Proiect\\src\\csvReports\\csv_report.csv");
 
     public static void create(String fileName)
     {
