@@ -11,4 +11,5 @@ The project itself is separated in 4 main packages ( the csv package is for repo
 - preparation package
   -> contains the Singleton PrepareGame class which is used to load all neccessary data into accessible data
 - utilities package
-  -> contains different Classes for useful types ( Pair, Triple type used for connecting a character to a relic and respectively for easily storing effect informations ) and functionalities such as a Reader class ( which does all the input reading from the user ), a Printer class 
+  -> contains different Classes for useful types ( Pair, Triple type used for connecting a character to a relic and respectively for easily storing effect informations ) and functionalities such as a Reader class ( which does all the input reading from the user ), a Printer class ( for output ) and a Service class ( which does all the with the menu navigation )
+- Classes package -> this contains all the other classes used for the actual implementation ( the dbConnections, the classes used to store information and the classes used for the game's logic )
