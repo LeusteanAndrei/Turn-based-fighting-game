@@ -4,7 +4,6 @@ import Classes.gameClasses.*;
 import Classes.dbConnection.*;
 import Classes.gameClasses.Character;
 import Classes.gameFunctionality.GameState;
-import Classes.gameFunctionality.Printer;
 import enumerations.CharacterType;
 import preparation.PrepareGame;
 

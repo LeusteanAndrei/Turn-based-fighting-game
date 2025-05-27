@@ -1,9 +1,8 @@
-package Classes.gameFunctionality;
+package utilities;
 
 import Classes.gameClasses.*;
 import Classes.gameClasses.Character;
-import utilities.Reader;
-import utilities.Triplet;
+import Classes.gameFunctionality.GameState;
 
 import java.io.IOException;
 import java.util.List;
